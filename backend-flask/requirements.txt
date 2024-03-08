@@ -6,5 +6,4 @@ opentelemetry-exporter-otlp-proto-http
 opentelemetry-instrumentation-flask 
 opentelemetry-instrumentation-requests
 
-export HONEYCOMP_API_KEY=4H2G6zcILfX9VTMwj5lozB
-gp env HONEYCOMP_API_KEY=4H2G6zcILfX9VTMwj5lozB
+

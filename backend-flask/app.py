@@ -20,8 +20,8 @@ from services.show_activity import *
 # from time import strftime
 
 # X-Ray -----------------
-# from aws_xray_sdk.core import xray_recorder
-# from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 # HoneyComb -----------------
 from opentelemetry import trace
@@ -48,8 +48,8 @@ from flask import got_request_exception
 
 
 # X-Ray -----------------
-# xray_url = os.getenv("AWS_XRAY_URL")
-# xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
 
 
 # HoneyComb -----------------
@@ -63,7 +63,7 @@ tracer = trace.get_tracer(__name__)
 app = Flask(__name__)
 
 # X-Ray -----------------
-# XRayMiddleware(app, xray_recorder)
+XRayMiddleware(app, xray_recorder)
 
 # HoneyComb -----------------
 # Initialize automatic instrumentation with Flask
@@ -101,6 +101,7 @@ def rollbar_test():
     rollbar.report_message('Hello World!', 'warning')
     return "Hello World!"
 
+# CloudWatch logs ----------------
 # @app.after_request
 # def after_request(response):
 #     timestamp = strftime('[%Y-%b-%d %H:%M]')
